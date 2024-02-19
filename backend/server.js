@@ -1,11 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const gamesRoutes = require("./routes/gamesRoutes");
+const streamerRoutes = require("./routes/streamerRoutes");
+const streamersRoutes = require("./routes/streamersRoutes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/streamers", streamersRoutes);
+app.use("/streamer", streamerRoutes);
+app.use("/games", gamesRoutes);
 
 // Provides an access token to use the Twitch API
 app.post("/twitchaccess", async (req, res) => {
@@ -27,6 +33,10 @@ app.post("/twitchaccess", async (req, res) => {
     res.json({ error: error.message });
   }
 });
+
+// Retrieve a video from a streamer(maybe)
+
+// Retrieve channel information about a streamer(maybe)
 
 // Starts the server
 try {
