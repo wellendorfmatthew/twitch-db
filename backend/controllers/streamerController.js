@@ -34,10 +34,10 @@ const getStreamer = async (req, res) => {
       }
     }
 
-    console.log(dataContainer);
-    res.json(dataContainer);
+    console.log("is this working ", dataContainer);
+    return dataContainer;
   } catch (error) {
-    res.json(error);
+    return error;
   }
 };
 
@@ -95,7 +95,7 @@ const getStreamersFollowers = async (req, res) => {
         listOfStreamers.push({ id: streamerID, total: data.total }); // Associate the follower count with the streamer's broadcaster_id
       });
       console.log(listOfStreamers);
-      res.json(listOfStreamers);
+      return listOfStreamers;
     } else {
       // Get the individual streamers follower count
       const response = await fetch(
@@ -110,10 +110,10 @@ const getStreamersFollowers = async (req, res) => {
       );
       const data = await response.json();
       console.log({ id: id, total: data.total });
-      res.json({ id: id, total: data.total });
+      return { id: id, total: data.total };
     }
   } catch (error) {
-    res.json(error);
+    return error;
   }
 };
 
@@ -190,9 +190,9 @@ const getStreamerClips = async (req, res) => {
       }
     );
     const data = await response.json();
-    res.json(data);
+    return data;
   } catch (error) {
-    res.json(error);
+    return error;
   }
 };
 

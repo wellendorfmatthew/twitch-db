@@ -13,9 +13,9 @@ const getTopFiveGames = async (req, res) => {
     );
     const data = await response.json();
     console.log(data);
-    res.json(data);
+    return data;
   } catch (error) {
-    res.json(error);
+    return error;
   }
 };
 
